@@ -55,26 +55,32 @@ buildTypes {
     // Required when using multiple flavors
     flavorDimensions += "environment"
 
-   productFlavors {
-        create("dev") {
-            dimension = "environment"
-            applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
-            manifestPlaceholders["appName"] = "NewGetxCLI"
-        }
+  productFlavors {
 
-        create("stage") {
-            dimension = "environment"
-            applicationIdSuffix = ".stage"
-            versionNameSuffix = "-stage"
-            manifestPlaceholders["appName"] = "Stage NewGetxCLI"
-        }
-
-        create("prod") {
-            dimension = "environment"
-            manifestPlaceholders["appName"] = "NewGetxCLI"
-        }
+    create("dev") {
+        dimension = "environment"
+        applicationIdSuffix = ".dev"
+        versionCode = (appConfigProperties["dev.versionCode"] as String).toInt()
+        versionName = appConfigProperties["dev.versionName"] as String
+        manifestPlaceholders["appName"] = appConfigProperties["appName"] as String + " Dev"
     }
+
+    create("stage") {
+        dimension = "environment"
+        applicationIdSuffix = ".stage"
+        versionCode = (appConfigProperties["stage.versionCode"] as String).toInt()
+        versionName = appConfigProperties["stage.versionName"] as String
+        manifestPlaceholders["appName"] = appConfigProperties["appName"] as String + " Stage"
+    }
+
+    create("prod") {
+        dimension = "environment"
+        versionCode = (appConfigProperties["prod.versionCode"] as String).toInt()
+        versionName = appConfigProperties["prod.versionName"] as String
+        manifestPlaceholders["appName"] = appConfigProperties["appName"] as String
+    }
+}
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
