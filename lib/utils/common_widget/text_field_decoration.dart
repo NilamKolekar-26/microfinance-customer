@@ -22,7 +22,7 @@ class TextFieldDecoration {
           hintStyle: TextStyle(
               fontFamily: "Inter-Regular",
               fontWeight: FontWeight.w400,
-              color: AppColors.subtitleColor,
+              color: AppColors.subtitle,
               fontSize: 14));
 
   static InputDecoration textfieldDecorationForSaveCard({String? hintText}) =>
@@ -32,7 +32,7 @@ class TextFieldDecoration {
           hintText: hintText,
           hintStyle: TextStyle(
               fontSize: FontSizes.s14,
-              color: AppColors.subtitleColor,
+              color: AppColors.subtitle,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal),
           contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12),
@@ -42,7 +42,7 @@ class TextFieldDecoration {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide(color: AppColors.textFieldBorderColor),
+            borderSide: BorderSide(color: AppColors.textFieldBorder),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -50,12 +50,12 @@ class TextFieldDecoration {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            borderSide: BorderSide(color: AppColors.textFieldBorderColor),
+            borderSide: BorderSide(color: AppColors.textFieldBorder),
           ),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
             borderSide: BorderSide(
-              color: AppColors.textFieldBorderColor,
+              color: AppColors.textFieldBorder,
             ),
           ));
 }

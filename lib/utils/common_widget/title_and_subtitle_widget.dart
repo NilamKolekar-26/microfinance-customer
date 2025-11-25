@@ -19,7 +19,7 @@ class TitleAndSubtitleText extends StatelessWidget {
           title1,
           style: TextStyle(
               fontSize: 12,
-              color: AppColors.subtitleColor,
+              color: AppColors.subtitle,
               fontFamily: Font.interNormal,
               fontWeight: FontWeight.w400),
         ),
@@ -61,7 +61,7 @@ class SubtitleAndtitleText extends StatelessWidget {
           title1,
           style: TextStyle(
               fontSize: 12,
-              color: AppColors.subtitleColor,
+              color: AppColors.subtitle,
               fontWeight: FontWeight.w400),
         ),
       ],
