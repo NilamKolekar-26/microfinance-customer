@@ -13,8 +13,8 @@ class SplashView extends GetView<SplashController> {
         child: Image.asset(
           width: double.infinity,
           height: double.infinity,
-          'asset/logo/whiteImg.jpg', // Ensure this path is correct
-          fit: BoxFit.fitWidth, // Fills the screen, cropping if necessary
+          'asset/logo/whiteImg.jpg', 
+          fit: BoxFit.fitWidth,
         ),
       ),
     );

@@ -24,7 +24,7 @@ plugins {
 
 
 android {
-    namespace = appConfigProperties["applicationId"] as String
+    namespace = "excellentminds.newGetxCLI"
     compileSdk = 36
 
     defaultConfig {
@@ -60,19 +60,19 @@ buildTypes {
             dimension = "environment"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            manifestPlaceholders["appName"] = "NewGetxCLI"
+            manifestPlaceholders["appName"] = appConfigProperties["appName"] as String + " Dev"
         }
 
         create("stage") {
             dimension = "environment"
             applicationIdSuffix = ".stage"
             versionNameSuffix = "-stage"
-            manifestPlaceholders["appName"] = "Stage NewGetxCLI"
+            manifestPlaceholders["appName"] = appConfigProperties["appName"] as String + " Stage"
         }
 
         create("prod") {
             dimension = "environment"
-            manifestPlaceholders["appName"] = "NewGetxCLI"
+            manifestPlaceholders["appName"] = appConfigProperties["appName"] as String
         }
     }
 
