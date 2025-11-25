@@ -11,7 +11,7 @@ String? loginMobileNumberValidator(val) {
   if (val == "") {
     return Strings.errorMsgRequired;
   } else if (val!.length != 10) {
-    return Strings.errorMsglength10;
+    return Strings.errorMsgLength10;
   }
   return null;
 }
@@ -20,7 +20,7 @@ String? otpValidation(val) {
   if (val == "") {
     return Strings.errorMsgRequired;
   } else if (val!.length != 4) {
-    return Strings.errorMsglength4;
+    return Strings.errorMsgLength4;
   }
   return null;
 }
