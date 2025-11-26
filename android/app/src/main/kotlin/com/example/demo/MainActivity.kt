@@ -1,4 +1,4 @@
-package excellentminds.newGetxCLI
+package com.example.newGetxCLI
 
 import io.flutter.embedding.android.FlutterActivity
 
