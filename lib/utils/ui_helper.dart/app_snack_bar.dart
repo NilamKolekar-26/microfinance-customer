@@ -64,7 +64,7 @@ class AppSnackBar {
       DismissDirection? dismissDirection,
       bool? showProgressIndicator,
       SnackStyle? snackStyle}) {
-    Get.snackbar(title ?? Strings.waring, massage,
+    Get.snackbar(title ?? Strings.warning, massage,
         colorText: AppColors.black,
         backgroundColor: AppColors.warning,
         icon: Icon(Icons.warning, color: AppColors.black),
