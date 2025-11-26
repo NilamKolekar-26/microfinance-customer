@@ -5,7 +5,7 @@ class QuantitySelector extends StatelessWidget {
   @override
   Widget build(Object context) {
     return Container(
-      color: AppColors.Warning,
+      color: AppColors.warning,
       child: Row(
         children: [
           IconButton(

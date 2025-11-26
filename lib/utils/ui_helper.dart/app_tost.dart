@@ -15,7 +15,7 @@ class AppTostMassage {
         toastLength: Toast.LENGTH_SHORT,
         gravity: position ?? ToastGravity.TOP,
         timeInSecForIosWeb: 1,
-        backgroundColor: AppColors.grrenButtonn,
+        backgroundColor: AppColors.greenButton,
         textColor: AppColors.white,
         fontSize: fontSize ?? Sizes.s15);
   }
@@ -45,7 +45,7 @@ class AppTostMassage {
         toastLength: Toast.LENGTH_SHORT,
         gravity: position ?? ToastGravity.TOP,
         timeInSecForIosWeb: 1,
-        backgroundColor: AppColors.Warning,
+        backgroundColor: AppColors.warning,
         textColor: textColor ?? AppColors.white,
         fontSize: fontSize ?? Sizes.s15);
   }

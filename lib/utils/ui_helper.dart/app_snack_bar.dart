@@ -66,7 +66,7 @@ class AppSnackBar {
       SnackStyle? snackStyle}) {
     Get.snackbar(title ?? Strings.waring, massage,
         colorText: AppColors.black,
-        backgroundColor: AppColors.Warning,
+        backgroundColor: AppColors.warning,
         icon: Icon(Icons.warning, color: AppColors.black),
         duration: duration ?? const Duration(seconds: 4),
         animationDuration: animationDuration ?? Duration(seconds: 1),

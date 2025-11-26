@@ -25,7 +25,7 @@ class TwoInlineText extends StatelessWidget {
                       : title1,
               style: TextStyle(
                   fontSize: FontSizes.s16,
-                  color: AppColors.dashbordItemType,
+                  color: AppColors.dashboardItemType,
                   fontFamily: "Inter-Bold",
                   fontWeight: FontWeight.w700),
             ),

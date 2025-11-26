@@ -22,7 +22,7 @@ class DottedPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.subtitleColor
+      ..color = AppColors.subtitle
       ..strokeWidth = 0.7
       ..style = PaintingStyle.stroke;
 

@@ -170,7 +170,7 @@ class TextStyles {
 
   static TextStyle get cardSubtitle => TextStyle(
       fontSize: FontSizes.s12,
-      color: AppColors.subtitleColor,
+      color: AppColors.subtitle,
       fontWeight: FontWeight.w400,
       inherit: false,
       fontFamily: "Inter-Regular");
@@ -208,13 +208,13 @@ class TextStyles {
 
   static TextStyle get textFieldLable => TextStyle(
       fontSize: FontSizes.s14,
-      color: AppColors.textFieldLableColor,
+      color: AppColors.textFieldLabel,
       inherit: false,
       fontFamily: "Inter-Medium");
 
   static TextStyle get textFieldHintStyle => TextStyle(
       fontSize: FontSizes.s14,
-      color: AppColors.textFieldLableColor,
+      color: AppColors.textFieldLabel,
       inherit: false,
       fontFamily: "Inter-Regular");
 
@@ -226,19 +226,19 @@ class TextStyles {
 
   static TextStyle get headline14 => TextStyle(
       fontSize: FontSizes.s14,
-      color: AppColors.textFieldLableColor,
+      color: AppColors.textFieldLabel,
       inherit: false,
       fontFamily: "Inter-Regular");
   static TextStyle get unitTextStyle => TextStyle(
       fontSize: FontSizes.s12,
       fontFamily: "Inter-Regular",
       fontWeight: FontWeight.w400,
-      color: AppColors.subtitleColor);
+      color: AppColors.subtitle);
   static TextStyle get billcount => TextStyle(
       fontSize: FontSizes.s12,
       fontFamily: "Inter-Medium",
       fontWeight: FontWeight.w500,
-      color: AppColors.subtitleColor);
+      color: AppColors.subtitle);
   static TextStyle get productTitle => TextStyle(
       fontSize: FontSizes.s16,
       fontWeight: FontWeight.w600,
