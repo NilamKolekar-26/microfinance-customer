@@ -1,78 +1,93 @@
 import java.util.Properties
 import java.io.FileInputStream
+import groovy.json.JsonSlurper
 
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
-
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 val appConfigProperties = Properties()
 val appConfigPropertiesFile = rootProject.file("app-config.properties")
-
 if (appConfigPropertiesFile.exists()) {
     appConfigProperties.load(FileInputStream(appConfigPropertiesFile))
+} 
+
+val versionsJsonString = appConfigProperties.getProperty("versions")
+val versionsMap = if (versionsJsonString != null) {
+    JsonSlurper().parseText(versionsJsonString) as Map<String, Map<String, Any>>
+} else {
+    throw GradleException("Missing 'versions' key in app-config.properties")
 }
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-
 android {
-    namespace = appConfigProperties["applicationId"] as String
+
+    namespace = appConfigProperties.getProperty("applicationId")
     compileSdk = 36
 
     defaultConfig {
-        applicationId = appConfigProperties["applicationId"] as String
-        minSdk = (appConfigProperties["minSdk"] as String).toInt()
-        targetSdk = (appConfigProperties["targetSdk"] as String).toInt()
-        versionCode = (appConfigProperties["versionCode"] as String).toInt()
-        versionName = appConfigProperties["versionName"] as String
+        applicationId = appConfigProperties.getProperty("applicationId")
+        minSdk = appConfigProperties.getProperty("minSdk").toInt()
+        targetSdk = appConfigProperties.getProperty("targetSdk").toInt()
+        val defaultVersion = versionsMap["default"] ?: throw GradleException("No 'default' version defined")
+        versionCode = defaultVersion["versionCode"] as Int
+        versionName = defaultVersion["versionName"] as String
+        manifestPlaceholders["appName"] = appConfigProperties.getProperty("appName")
     }
-     signingConfigs {
+
+    signingConfigs {
         create("release") {
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
+            if (keystorePropertiesFile.exists()) {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
         }
     }
-buildTypes {
+
+    buildTypes {
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             isShrinkResources = false
-            // proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
-
-    // Required when using multiple flavors
     flavorDimensions += "environment"
 
-   productFlavors {
+    productFlavors {
         create("dev") {
             dimension = "environment"
             applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
-            manifestPlaceholders["appName"] = "NewGetxCLI"
+            val devVersion = versionsMap["dev"]!!
+            versionCode = devVersion["versionCode"] as Int
+            versionName = devVersion["versionName"] as String
+            manifestPlaceholders["appName"] = appConfigProperties.getProperty("appName") + " Dev"
         }
 
         create("stage") {
             dimension = "environment"
             applicationIdSuffix = ".stage"
-            versionNameSuffix = "-stage"
-            manifestPlaceholders["appName"] = "Stage NewGetxCLI"
+            val stageVersion = versionsMap["stage"]!!
+            versionCode = stageVersion["versionCode"] as Int
+            versionName = stageVersion["versionName"] as String
+            manifestPlaceholders["appName"] = appConfigProperties.getProperty("appName") + " Stage"
         }
 
         create("prod") {
             dimension = "environment"
-            manifestPlaceholders["appName"] = "NewGetxCLI"
+            val prodVersion = versionsMap["prod"]!!
+            versionCode = prodVersion["versionCode"] as Int
+            versionName = prodVersion["versionName"] as String
+            manifestPlaceholders["appName"] = appConfigProperties.getProperty("appName")
         }
     }
 
@@ -85,7 +100,6 @@ buildTypes {
         jvmTarget = "17"
     }
 }
-
 
 flutter {
     source = "../.."
