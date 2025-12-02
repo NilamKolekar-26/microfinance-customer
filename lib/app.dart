@@ -1,5 +1,9 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get/get.dart';
 import 'package:newGetxCLI/app/routes/app_pages.dart';
+import 'package:newGetxCLI/firebase_options.dart';
 import 'package:newGetxCLI/utils/api/app_envirments.dart';
 import 'package:newGetxCLI/utils/common_widget/app_error_widget.dart';
 import 'package:newGetxCLI/utils/theme/app_theme.dart';
@@ -79,6 +83,16 @@ class App {
     runZonedGuarded(
       () async {
         WidgetsFlutterBinding.ensureInitialized();
+        try {
+          await Firebase.initializeApp(
+            options: DefaultFirebaseOptions.currentPlatform,
+          );
+        } catch (e) {
+          print("Firebase initialization failed: $e");
+        }
+
+        FirebaseMessaging.instance.getToken().then((token) {});
+
         /* -------- Get Storage Initialize -----------   */
         await GetStorage.init();
         /* --------Setting configuration parameters-----------   */
